@@ -41,9 +41,9 @@ const Footer = () => {
                 <div className="flex flex-col gap-3 ">
                   <h3 className="text-xl max-sm:text-base">Company</h3>
                   <ul className="text-sm flex flex-col gap-2 max-sm:text-xs">
-                    <li><Link to={'/our-story'} className="hover:text-blue-500">Our Story</Link></li>
-                    <li><Link to={'/careers'} className="hover:text-blue-500">Careers</Link></li>
-                    <li><Link to={'/features'} className="hover:text-blue-500">Features</Link></li>
+                    <li><Link to={'/about'} className="hover:text-blue-500">About</Link></li>
+                    <li><Link to={'/services'} className="hover:text-blue-500">Services</Link></li>
+                    <li><Link to={'/plans'} className="hover:text-blue-500">Plans</Link></li>
                   </ul>
                 </div>
                 <div className="flex flex-col gap-3 ">

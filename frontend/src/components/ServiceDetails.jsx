@@ -3,6 +3,7 @@ import { services } from "../utils/ServicePageContent";
 import { Link } from "react-router-dom";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { FaCheckCircle } from "react-icons/fa";
+import { Icon } from "@iconify/react";
 
 const ServiceDetails = ({ serviceTitle }) => {
   const serviceData = services[serviceTitle];
@@ -90,7 +91,13 @@ const ServiceDetails = ({ serviceTitle }) => {
                 key={index}
                 className="p-6 bg-white rounded-lg flex items-center gap-2 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300"
               >
-                🚀<p className="text-gray-600">{item}</p>
+                <div className="bg-yellow-50 rounded-full p-2">
+                  <Icon
+                    icon="tabler:bulb"
+                    className="text-yellow-500 text-2xl"
+                  />
+                </div>{" "}
+                <p className="text-gray-600">{item}</p>
               </div>
             ))}
           </div>
@@ -98,8 +105,11 @@ const ServiceDetails = ({ serviceTitle }) => {
 
         <section className="py-8 sm:py-12">
           <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-            <h2 className="text-xl font-semibold text-blue-800 mb-3">
-              Pro Tip
+            <h2 className="text-xl font-semibold text-blue-800 mb-3 flex items-center gap-2">
+              <span>Pro Tip</span>
+              <div className="bg-yellow-50 rounded-full p-2">
+                <Icon icon="tabler:bulb" className="text-yellow-500 text-2xl" />
+              </div>
             </h2>
             <p className="text-blue-600">{serviceData.proTip}</p>
           </div>

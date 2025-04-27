@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../redux/userSlice";
 import toast from "react-hot-toast";
 import { logout } from "../utils/api";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = async () => {
     await logout();
@@ -18,7 +20,28 @@ const Header = () => {
     navigate("/login");
   };
 
-  const navLinks = ["Contact", "Analyse", "Plans", "Services"];
+  const navLinks = [
+    {
+      name: "Home",
+      href: "/",
+    },
+    {
+      name: "Contact",
+      href: "/contact",
+    },
+    {
+      name: "Analyse",
+      href: "/analyse",
+    },
+    {
+      name: "Plans",
+      href: "/plans",
+    },
+    {
+      name: "Services",
+      href: "/services",
+    },
+  ];
   const [showMobileNav, setShowMobileNav] = useState(false);
 
   return (
@@ -41,16 +64,18 @@ const Header = () => {
               {navLinks.map((link) => {
                 return (
                   <Link
-                    to={`/${link.toLowerCase()}`}
+                    to={`${link.href}`}
                     className="text-blue-600 hover:text-blue-800 max-lg:text-base"
+                    key={link.name}
                   >
-                    <div
-                      className="group cursor-pointer font-semibold relative py-5"
-                      key={link}
-                    >
-                      {link}
-                      <div
-                        className={`absolute left-0 top-[95%] w-0 h-1 bg-blue-600 rounded-full transition-all duration-300 origin-left group-hover:w-full `}
+                    <div className="group cursor-pointer font-semibold relative py-5">
+                      {link.name}
+                      <motion.div
+                        className={`absolute left-0 top-[95%] w-full h-1 bg-blue-600 rounded-full transition-all duration-300 origin-left group-hover:scale-x-100 ${
+                          location.pathname === link.href
+                            ? "scale-x-100"
+                            : "scale-x-0"
+                        }`}
                       />
                     </div>
                   </Link>
@@ -98,14 +123,12 @@ const Header = () => {
           {navLinks.map((link) => {
             return (
               <Link
-                to={`/${link.toLowerCase()}`}
+                to={`${link.href}`}
                 className="text-blue-500 hover:text-blue-700 "
+                key={link.name}
               >
-                <div
-                  key={link}
-                  className=" hover:text-slate-500 cursor-pointer font-semibold border-b-2 border-blue-500"
-                >
-                  {link}
+                <div className=" hover:text-slate-500 cursor-pointer font-semibold border-b-2 border-blue-500">
+                  {link.name}
                 </div>
               </Link>
             );
