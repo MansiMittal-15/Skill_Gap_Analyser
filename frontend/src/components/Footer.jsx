@@ -22,14 +22,14 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flex-col">
-            <div className="flex gap-4 py-10 justify-between max-sm:flex-col ">
+            <div className="flex gap-4 py-10 justify-between max-sm:flex-col max-md:gap-6 ">
               <div className="w-[30%] flex gap-4 flex-col max-sm:w-full ">
                 <h1 className="text-2xl max-sm:text-xl">Skill Analyser</h1>
                 <p className="text-sm max-sm:text-xs">
                 Discover where you stand, bridge the gaps, and accelerate your journey to success — with intelligent, real-time skill assessments powered by AI.
                 </p>
               </div>
-              <div className="grid grid-cols-3 max-sm:grid-cols-1 gap-16 w-[40%] max-sm:gap-6 ">
+              <div className="grid grid-cols-3 max-sm:grid-cols-1 gap-16 w-[60%] max-lg:w-[70%] max-md:gap-6 ">
                 <div className="flex flex-col gap-3 ">
                   <h3 className="text-xl max-sm:text-base">Help</h3>
                   <ul className="text-sm flex flex-col gap-2 max-sm:text-xs">

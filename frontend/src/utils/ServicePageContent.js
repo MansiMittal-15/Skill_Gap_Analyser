@@ -23,31 +23,7 @@ export const services = {
     ctaText: "Start Your Skill Assessment Now",
   },
 
-  "Gap Analysis": {
-    tagline: "Bridge the Gap Between Where You Are and Where You Want to Be!",
-    introduction:
-      "Understanding your skill gaps is critical for smart career growth. Our AI Gap Analyzer maps your current skill set against your desired role or industry standards, helping you identify exactly what you’re missing.",
-    howItWorks: [
-      "Upload your current skills and preferred job role.",
-      "AI matches against job market expectations and role descriptions.",
-      "Get a detailed Gap Report showing missing or weak skills.",
-    ],
-    benefits: [
-      "Personalized skill gap reports.",
-      "Strategic roadmap for closing gaps.",
-      "Stay ahead by knowing industry-required skills.",
-    ],
-    idealFor: [
-      "Career changers aiming for new industries.",
-      "Students aiming for competitive roles.",
-      "Professionals targeting leadership positions.",
-    ],
-    proTip:
-      "Prioritize filling high-impact gaps first — they give the maximum career boost!",
-    ctaText: "Analyze Your Skill Gaps Today",
-  },
-
-  "Personalized Learning Pathways": {
+  "Personalized Learning Path": {
     tagline: "Your Custom Roadmap to Success!",
     introduction:
       "Generic learning doesn’t work for everyone. Our AI crafts personalized learning journeys based on your skills, goals, and industry trends — so you learn exactly what you need, when you need it.",
@@ -71,54 +47,199 @@ export const services = {
     ctaText: "Get Your Personalized Learning Path",
   },
 
-  "Career Guidance and Insights": {
-    tagline: "Shape Your Future With Confidence!",
+  "Career Role Mapping": {
+    tagline: "Find Where You Truly Belong!",
     introduction:
-      "Sometimes you don’t need another course — you need smart direction. Our AI analyzes market trends, skill demand, and your unique profile to offer personalized career advice you can trust.",
+      "Matching your skillset with the right career is half the battle. Our AI analyzes your capabilities and passions and maps them to trending career roles so you can aim for the perfect fit.",
     howItWorks: [
-      "Complete a career preference and skill analysis survey.",
-      "AI matches your profile against current and emerging career trends.",
-      "Receive actionable insights and career path suggestions.",
+      "Complete your skill and interest assessment.",
+      "AI matches your profile to high-demand career roles.",
+      "Receive a detailed career mapping report.",
     ],
     benefits: [
-      "Clarity in career choices.",
-      "Guidance aligned with future job markets.",
-      "Save years by avoiding wrong paths early.",
+      "Discover careers you didn’t even know you fit into.",
+      "Get clarity on future career moves.",
+      "Boost job satisfaction by targeting right-fit roles.",
     ],
     idealFor: [
-      "Confused students and fresh graduates.",
-      "Mid-career professionals feeling stuck.",
-      "Ambitious individuals planning long-term careers.",
+      "Students unsure about which field to pursue.",
+      "Professionals planning a career pivot.",
+      "Individuals seeking better role alignment.",
     ],
     proTip:
-      "Career paths evolve — check market trends yearly and adapt your strategy!",
-    ctaText: "Get Personalized Career Insights",
+      "Keep an open mind — sometimes the best roles are those you never considered before!",
+    ctaText: "Explore Your Career Map",
   },
 
-  "Certification Readiness Check": {
-    tagline: "Ace Your Certifications with Confidence!",
+  "Certification Suggestions": {
+    tagline: "Get Certified, Get Ahead!",
     introduction:
-      "Certifications boost your credibility, but are you truly ready? Our AI Readiness Check evaluates your preparedness for industry certifications — saving you time, money, and disappointment.",
+      "Certifications can boost your credibility. Our AI recommends the most valuable and recognized certifications based on your current skills and desired industry, helping you stay ahead in your career journey.",
     howItWorks: [
-      "Select the certification you aim for (AWS, PMP, Data Science, etc.).",
-      "Take readiness quizzes and simulation exams.",
-      "Get a readiness score and personalized improvement plan.",
+      "Input your career goals and skills.",
+      "AI suggests relevant certifications valued by top employers.",
+      "Get preparation resources and timelines.",
     ],
     benefits: [
-      "Understand certification readiness in real-time.",
-      "Pinpoint weak areas before paying for expensive exams.",
-      "Save time with focused preparation strategies.",
+      "Focus only on high-impact certifications.",
+      "Boost employability and promotions.",
+      "Save time by avoiding irrelevant certifications.",
     ],
     idealFor: [
-      "Students planning to get certified before job hunting.",
-      "Professionals boosting credentials for promotions.",
-      "Freelancers aiming for better client trust.",
+      "Students entering competitive industries.",
+      "Professionals aiming for managerial roles.",
+      "Anyone looking to validate skills officially.",
     ],
     proTip:
-      "Practice under exam conditions! It dramatically improves your real exam performance.",
-    ctaText: "Check Your Certification Readiness",
+      "Stack certifications smartly — combine technical + soft skill certifications for maximum value!",
+    ctaText: "Get Your Certification Plan",
+  },
+
+  "Progress Tracking": {
+    tagline: "Track Your Wins, Big and Small!",
+    introduction:
+      "Growth feels amazing when you can see it. Our platform tracks your learning activities, skill enhancements, and achievements so you can celebrate milestones and stay motivated.",
+    howItWorks: [
+      "Log completed tasks, courses, and assessments.",
+      "AI analyzes improvements over time.",
+      "Receive periodic skill progression reports.",
+    ],
+    benefits: [
+      "Clear visibility of your learning curve.",
+      "Motivation boost by seeing real progress.",
+      "Better planning for future learning paths.",
+    ],
+    idealFor: [
+      "Students and online learners.",
+      "Professionals working toward certifications.",
+      "Anyone serious about consistent self-improvement.",
+    ],
+    proTip:
+      "Set monthly micro-goals — small wins fuel big results!",
+    ctaText: "Start Tracking Your Progress",
+  },
+
+  "Mock Interviews and Tests": {
+    tagline: "Practice. Perfect. Perform!",
+    introduction:
+      "Master interviews and exams with realistic practice. Our AI-generated mock interviews and industry tests prepare you mentally and technically for the real deal.",
+    howItWorks: [
+      "Select your target job role or certification.",
+      "Attempt AI-generated mock tests and simulations.",
+      "Get feedback and personalized improvement tips.",
+    ],
+    benefits: [
+      "Simulate real-world interview scenarios.",
+      "Identify and fix weak answers beforehand.",
+      "Boost confidence and reduce exam anxiety.",
+    ],
+    idealFor: [
+      "Fresh graduates preparing for placements.",
+      "Working professionals switching careers.",
+      "Certification aspirants practicing under exam conditions.",
+    ],
+    proTip:
+      "Record yourself during mock interviews — reviewing it gives huge insights!",
+    ctaText: "Start Mock Interviews Now",
+  },
+
+  "Skill Benchmarking": {
+    tagline: "Know Where You Stand!",
+    introduction:
+      "Wondering how you compare to industry standards or top performers? Our Skill Benchmarking tool lets you measure your abilities against the best — helping you set smarter goals.",
+    howItWorks: [
+      "Take skill-specific benchmarking tests.",
+      "AI compares your results with industry averages and leaders.",
+      "Receive a benchmarking report with targeted recommendations.",
+    ],
+    benefits: [
+      "See how you rank regionally and globally.",
+      "Identify elite-level skill gaps.",
+      "Set realistic and inspiring career goals.",
+    ],
+    idealFor: [
+      "Competitors aiming for top roles.",
+      "Ambitious learners seeking elite performance.",
+      "Professionals preparing for leadership.",
+    ],
+    proTip:
+      "Benchmark yearly — progress against yourself and the world!",
+    ctaText: "Benchmark Your Skills Today",
+  },
+
+  "Real-Time Feedback": {
+    tagline: "Learn Fast, Correct Faster!",
+    introduction:
+      "Why wait for weeks to know if you're doing well? Our AI provides real-time, actionable feedback on quizzes, projects, and assignments so you can improve instantly.",
+    howItWorks: [
+      "Submit assignments, quizzes, or code snippets.",
+      "AI analyzes submissions instantly for accuracy and quality.",
+      "Receive immediate feedback and corrections.",
+    ],
+    benefits: [
+      "Accelerated learning through immediate corrections.",
+      "Higher retention with timely insights.",
+      "Confidence boost by understanding mistakes quickly.",
+    ],
+    idealFor: [
+      "Online learners and bootcamp students.",
+      "Professionals undergoing fast-track training.",
+      "Hackathon and competition participants.",
+    ],
+    proTip:
+      "Act immediately on feedback — delay kills momentum!",
+    ctaText: "Get Instant Feedback",
+  },
+
+  "Soft Skills Evaluation": {
+    tagline: "Sharpen the Skills That Matter Most!",
+    introduction:
+      "Technical skills get you hired, but soft skills get you promoted. Our AI evaluates crucial soft skills like communication, leadership, and teamwork, helping you stand out in any environment.",
+    howItWorks: [
+      "Take soft skills quizzes and simulations.",
+      "AI analyzes tone, clarity, empathy, leadership traits, etc.",
+      "Get a detailed soft skills report with improvement tips.",
+    ],
+    benefits: [
+      "Improve communication, collaboration, and leadership abilities.",
+      "Boost emotional intelligence (EQ).",
+      "Enhance career prospects significantly.",
+    ],
+    idealFor: [
+      "Students entering the workforce.",
+      "Professionals aiming for managerial roles.",
+      "Entrepreneurs and team leaders.",
+    ],
+    proTip:
+      "Practice empathy daily — it's the most underrated leadership skill!",
+    ctaText: "Evaluate and Improve Soft Skills",
+  },
+
+  "Resume and Portfolio Enhancement": {
+    tagline: "Let Your Skills Shine!",
+    introduction:
+      "Your resume and portfolio should tell your story brilliantly. Our AI offers data-driven suggestions to optimize your profile for recruiters and clients — making sure you stand out instantly.",
+    howItWorks: [
+      "Upload your resume or portfolio link.",
+      "AI analyzes skill presentation, formatting, achievements listed.",
+      "Get actionable suggestions and samples to upgrade.",
+    ],
+    benefits: [
+      "Higher visibility in recruiter searches.",
+      "Better storytelling of your professional journey.",
+      "Increased chances of landing interviews.",
+    ],
+    idealFor: [
+      "Job seekers aiming for top companies.",
+      "Freelancers marketing their skills.",
+      "Professionals planning a career switch.",
+    ],
+    proTip:
+      "Tailor your resume for *each* application — one size never fits all!",
+    ctaText: "Enhance Your Resume Today",
   },
 };
+
 
 export const serviceContent = [
   {
