@@ -7,6 +7,7 @@ import Signup from "./auth/Signup";
 import MobileNavigation from "./components/MobileNavigation";
 import AnalyseForm from "./components/AnalyseForm";
 import Services from "./components/Services";
+import SkillGapAnalysis from "./components/SkillGapAnalysis";
 
 const appRouter = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/analyse-form",
     element: <AnalyseForm />,
+  },
+  {
+    path: "/skill-gap-analysis",
+    element: <SkillGapAnalysis />,
   },
   {
     path: "/login",
