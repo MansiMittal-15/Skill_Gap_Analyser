@@ -12,7 +12,6 @@ const SkillGapAnalysis = () => {
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        console.log('File selected:', file);
         if (file && (file.type === 'application/pdf' || file.type === 'text/plain')) {
             setResume(file);
             setError(null);
@@ -36,48 +35,27 @@ const SkillGapAnalysis = () => {
         formData.append('resume', resume);
         formData.append('targetRole', targetRole);
 
-        // Log the FormData contents
-        console.log('FormData contents:');
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
-
         try {
-            console.log('Sending request to backend...');
-            const response = await axios.post('http://localhost:8001/upload', formData, {
+            const response = await axios.post('http://localhost:8000/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
 
-            console.log('Response received:', response.data);
-            console.log('Response structure:', {
-                hasExtractedSkills: Array.isArray(response.data.extractedSkills),
-                hasMissingSkills: Array.isArray(response.data.missingSkills),
-                hasRecommendedCertifications: typeof response.data.recommendedCertifications === 'object',
-                hasRecommendations: typeof response.data.recommendations === 'object',
-                recommendationsStructure: response.data.recommendations ? {
-                    hasCourses: Array.isArray(response.data.recommendations.courses),
-                    hasCertifications: Array.isArray(response.data.recommendations.certifications),
-                    hasResources: Array.isArray(response.data.recommendations.resources)
-                } : null
-            });
-            
+            if (!response.data) {
+                throw new Error("Empty response from backend");
+            }
+
             setAnalysis(response.data);
         } catch (err) {
-            console.error('Error details:', {
-                message: err.message,
-                response: err.response?.data,
-                status: err.response?.status,
-                headers: err.response?.headers
-            });
-            
+            console.error('Upload failed:', err);
+
             if (err.response) {
-                setError(`Server Error: ${err.response.data.error || err.response.data.message || 'Unknown error'}`);
+                setError(`Server Error: ${err.response.data?.error || 'Unknown error'}`);
             } else if (err.request) {
-                setError('No response from server. Please check if the backend is running.');
+                setError('No response from server. Please ensure the backend is running.');
             } else {
-                setError(`Error: ${err.message}`);
+                setError(`Client Error: ${err.message}`);
             }
         } finally {
             setLoading(false);
@@ -89,7 +67,7 @@ const SkillGapAnalysis = () => {
             <div className="max-w-3xl mx-auto">
                 <div className="bg-white shadow rounded-lg p-6">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Skill Gap Analysis</h2>
-                    
+
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
                             <label className="block text-sm font-medium text-gray-700">
@@ -144,7 +122,7 @@ const SkillGapAnalysis = () => {
 
                     {analysis && (
                         <div className="mt-8 space-y-6">
-                            {analysis.extractedSkills && analysis.extractedSkills.length > 0 && (
+                            {analysis.extractedSkills?.length > 0 && (
                                 <div>
                                     <h3 className="text-lg font-medium text-gray-900">Extracted Skills</h3>
                                     <ul className="mt-2 list-disc list-inside">
@@ -155,7 +133,7 @@ const SkillGapAnalysis = () => {
                                 </div>
                             )}
 
-                            {analysis.missingSkills && analysis.missingSkills.length > 0 && (
+                            {analysis.missingSkills?.length > 0 && (
                                 <div>
                                     <h3 className="text-lg font-medium text-gray-900">Missing Skills</h3>
                                     <ul className="mt-2 list-disc list-inside">
@@ -173,7 +151,7 @@ const SkillGapAnalysis = () => {
                                         {Object.entries(analysis.recommendedCertifications).map(([skill, certifications]) => (
                                             <div key={skill} className="bg-gray-50 p-4 rounded-md">
                                                 <h4 className="font-medium text-gray-900">{skill}</h4>
-                                                {certifications && certifications.length > 0 ? (
+                                                {certifications.length > 0 ? (
                                                     <ul className="mt-2 list-disc list-inside">
                                                         {certifications.map((cert, index) => (
                                                             <li key={index} className="text-gray-600">{cert}</li>
@@ -190,7 +168,7 @@ const SkillGapAnalysis = () => {
 
                             {analysis.recommendations && (
                                 <>
-                                    {analysis.recommendations.courses && analysis.recommendations.courses.length > 0 && (
+                                    {analysis.recommendations.courses?.length > 0 && (
                                         <div>
                                             <h3 className="text-lg font-medium text-gray-900">Recommended Courses</h3>
                                             <div className="mt-2 grid gap-4">
@@ -209,7 +187,7 @@ const SkillGapAnalysis = () => {
                                         </div>
                                     )}
 
-                                    {analysis.recommendations.certifications && analysis.recommendations.certifications.length > 0 && (
+                                    {analysis.recommendations.certifications?.length > 0 && (
                                         <div>
                                             <h3 className="text-lg font-medium text-gray-900">Recommended Certifications</h3>
                                             <div className="mt-2 grid gap-4">
@@ -224,7 +202,7 @@ const SkillGapAnalysis = () => {
                                         </div>
                                     )}
 
-                                    {analysis.recommendations.resources && analysis.recommendations.resources.length > 0 && (
+                                    {analysis.recommendations.resources?.length > 0 && (
                                         <div>
                                             <h3 className="text-lg font-medium text-gray-900">Additional Resources</h3>
                                             <div className="mt-2 grid gap-4">
@@ -252,4 +230,4 @@ const SkillGapAnalysis = () => {
     );
 };
 
-export default SkillGapAnalysis; 
+export default SkillGapAnalysis;

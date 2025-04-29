@@ -46,6 +46,9 @@ async function checkMLService() {
 // Upload route
 app.post('/upload', upload.single('resume'), async (req, res) => {
     try {
+        // Debug log: log received file and form data
+        console.log('Received file:', req.file);
+        console.log('Received form data:', req.body);
         if (!req.file) {
             return res.status(400).json({ error: 'No file uploaded' });
         }
@@ -87,7 +90,8 @@ app.post('/upload', upload.single('resume'), async (req, res) => {
                 resumeText: resumeText,
                 targetRole: targetRole
             });
-            
+            // Debug log: log ML service response
+            console.log('ML service response:', response.data);
             // Get AI-powered course recommendations
             const recommendations = await getCourseRecommendations(
                 response.data.missingSkills,
