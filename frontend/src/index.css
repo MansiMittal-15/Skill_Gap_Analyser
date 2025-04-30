@@ -1,3 +1,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary-color: #0066ff;
+  --secondary-color: #001833;
+  --light-blue: #e6f0ff;
+  --accent-color: #00c2ff;
+}
+
+* {
+  font-family: 'Sora', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f8fafc;
+}
+
+.ai-gradient-text {
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Rainbow border effect for recommendation cards */
+.recommendation-card {
+  position: relative;
+  background: white;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  z-index: 1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.recommendation-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff0080);
+  background-size: 400% 400%;
+  z-index: -1;
+  border-radius: 0.625rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.recommendation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.recommendation-card:hover::before {
+  opacity: 1;
+  animation: rainbow-border 3s ease infinite;
+}
+
+@keyframes rainbow-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glow effect for certification cards */
+.certification-card {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 102, 255, 0.2);
+}
+
+.certification-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(0, 102, 255, 0.3);
+  transform: translateY(-5px);
+}
+
+/* Resource card hover effect */
+.resource-card {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.resource-card:hover {
+  background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%);
+}

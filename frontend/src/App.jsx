@@ -8,6 +8,8 @@ import MobileNavigation from "./components/MobileNavigation";
 import AnalyseForm from "./components/AnalyseForm";
 import Services from "./components/Services";
 import SkillGapAnalysis from "./components/SkillGapAnalysis";
+import BuyCredits from "./components/BuyCredits";
+import Plans from "./components/Plans";
 
 const appRouter = createBrowserRouter([
   {
@@ -27,7 +29,7 @@ const appRouter = createBrowserRouter([
     element: <AnalyseForm />,
   },
   {
-    path: "/skill-gap-analysis",
+    path: "/analyse",
     element: <SkillGapAnalysis />,
   },
   {
@@ -39,8 +41,16 @@ const appRouter = createBrowserRouter([
     element: <Signup />,
   },
   {
+    path: "/credits",
+    element: <BuyCredits />,
+  },
+  {
     path: "/mobileNavigation",
     element: <MobileNavigation />,
+  },
+  {
+    path: "/plans",
+    element: <Plans />,
   },
 ]);
 

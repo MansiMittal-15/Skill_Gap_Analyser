@@ -6,9 +6,11 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import connectDB from './database/db.js';
 import userRoute from './routes/user.js';
+import creditRoutes from './routes/credits.js';
 import bodyParser from 'body-parser';
 import pdfParse from 'pdf-parse/lib/pdf-parse.js';
 import { getCourseRecommendations } from './services/geminiService.js';
+import { calculateAnalysisCost } from './services/creditService.js';
 
 // Load environment variables
 dotenv.config();
@@ -22,8 +24,19 @@ const app = express();
 const port = process.env.PORT || 8001;
 const ML_SERVICE_URL = 'http://localhost:5001';
 
+// Middleware for debugging API requests
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  console.log('Request body:', req.body);
+  console.log('Request params:', req.params);
+  next();
+});
+
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // Frontend origin
+  credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -53,8 +66,13 @@ app.post('/upload', upload.single('resume'), async (req, res) => {
             return res.status(400).json({ error: 'No file uploaded' });
         }
 
-        // Get target role from request body
+        // Get target role and userId from request body
         const targetRole = req.body.targetRole || 'Full Stack Developer';
+        const userId = req.body.userId; // Optional: User ID for authenticated users
+        const analysisType = req.body.analysisType || ['missingSkills', 'courses', 'certifications', 'resources'];
+
+        // Calculate the credit cost for this analysis
+        const creditCost = calculateAnalysisCost(analysisType);
 
         // Check if ML service is available
         const isMLServiceAvailable = await checkMLService();
@@ -88,7 +106,9 @@ app.post('/upload', upload.single('resume'), async (req, res) => {
             console.log('Sending request to ML service...');
             const response = await axios.post(`${ML_SERVICE_URL}/analyze`, { 
                 resumeText: resumeText,
-                targetRole: targetRole
+                targetRole: targetRole,
+                userId: userId,
+                analysisType: analysisType
             });
             // Debug log: log ML service response
             console.log('ML service response:', response.data);
@@ -101,7 +121,8 @@ app.post('/upload', upload.single('resume'), async (req, res) => {
             // Combine ML analysis with AI recommendations
             const result = {
                 ...response.data,
-                recommendations: recommendations
+                recommendations: recommendations,
+                creditCost: creditCost
             };
 
             console.log('ML service response with recommendations:', result);
@@ -124,6 +145,7 @@ app.post('/upload', upload.single('resume'), async (req, res) => {
 
 // Existing routes
 app.use('/api/v1/user', userRoute);
+app.use('/api/v1/credits', creditRoutes);
 
 // Start server
 app.listen(port, () => { 

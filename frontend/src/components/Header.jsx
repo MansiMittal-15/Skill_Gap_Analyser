@@ -1,20 +1,55 @@
 import React, { useEffect, useRef, useState } from "react";
 import Dropdown from "./Dropdown";
 import { Link, useNavigate } from "react-router-dom";
-import { FaAngleDown, FaBars, FaUserCircle } from "react-icons/fa";
+import { FaAngleDown, FaBars, FaUserCircle, FaCoins, FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../redux/userSlice";
 import toast from "react-hot-toast";
 import { logout } from "../utils/api";
+import axios from "axios";
 
 const Header = () => {
   const { user } = useSelector((store) => store.user);
+  const [credits, setCredits] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // Fetch user credits when component mounts
+  useEffect(() => {
+    const fetchCredits = async () => {
+      try {
+        const userId = localStorage.getItem('userId');
+        console.log('Attempting to fetch credits, userId:', userId);
+        
+        if (userId) {
+          console.log('Making API call to fetch credits...');
+          const response = await axios.get(`http://localhost:8000/api/v1/credits/${userId}`);
+          console.log('Credits API response:', response.data);
+          setCredits(response.data.credits);
+        } else {
+          console.log('No userId found in localStorage');
+        }
+      } catch (err) {
+        console.error('Error fetching credits:', err);
+      }
+    };
+
+    if (user) {
+      console.log('User is logged in, fetching credits...');
+      fetchCredits();
+    } else {
+      console.log('No user in Redux store');
+    }
+  }, [user]);
+
+  // Debug rendering
+  console.log('Current credits state:', credits);
+  console.log('Current user state:', user);
 
   const handleLogout = async () => {
     await logout();
     dispatch(setUser(null));
+    setCredits(null); // Clear credits on logout
     toast.success("Logged out successfully");
     navigate("/login");
   };
@@ -60,6 +95,16 @@ const Header = () => {
                 {user?.fullname}
               </p>
               <FaUserCircle className="text-blue-500 text-4xl hover:text-blue-700" />
+              {/* Credit balance display - single coin with number */}
+              <div className="flex items-center gap-1 bg-blue-50 py-1 px-3 rounded-full">
+                <FaCoins className="text-yellow-500" />
+                <span className="text-sm font-medium text-blue-700">
+                  {credits !== null ? credits : 'Loading...'}
+                </span>
+              </div>
+              <Link to="/credits" className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white">
+                <FaPlus />
+              </Link>
               <button
                 onClick={handleLogout}
                 className=" border-[2px] border-black p-2 text-lg rounded-xl bg-blue-700/90 w-28 text-white hover:bg-blue-800  "

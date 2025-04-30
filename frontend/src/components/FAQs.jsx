@@ -1,71 +1,91 @@
-import React from "react";
+import React, { useState } from "react";
+import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
+
+const faq_questions = [
+  {
+    question: "What is Skill Gap Analyzer?",
+    answer:
+      "Skill Gap Analyzer is an AI-powered platform that helps individuals and organizations identify, understand, and bridge skill gaps by providing personalized recommendations and actionable insights.",
+  },
+  {
+    question: "How does Skill Gap Analyzer work?",
+    answer:
+      "You input your current skills, experience, and goals. Our AI analyzes your profile, benchmarks it against industry standards, and provides a detailed gap analysis with tailored recommendations for courses, certifications, and resources.",
+  },
+  {
+    question: "Who can use Skill Gap Analyzer?",
+    answer:
+      "Anyone looking to upskill or reskill can use Skill Gap Analyzer—students, professionals, teams, and organizations alike.",
+  },
+  {
+    question: "Is my data secure?",
+    answer:
+      "Absolutely. We use industry-standard security practices to ensure your data is safe and confidential.",
+  },
+  {
+    question: "How often should I update my profile?",
+    answer:
+      "We recommend updating your profile whenever you acquire new skills or certifications to get the most accurate recommendations.",
+  },
+  {
+    question: "Is there a free trial?",
+    answer:
+      "Yes! You can get started with a free trial and explore the platform's features before upgrading to a premium plan.",
+  },
+];
 
 const FAQs = () => {
-  const faq_questions = [
-    {
-      question: "What is Pricer and how does it work?",
-      answer:
-        "Pricer is an AI-powered price recommendation system that helps startups optimize their product pricing to maximize revenue. It analyzes market trends, competitor pricing, and consumer behavior to suggest the best price points for your products.",
-    },
-    {
-      question: "How can Pricer help my startup increase revenue?",
-      answer:
-        "By using data-driven insights, Pricer recommends optimal pricing strategies that balance competitiveness and profitability, ensuring you don’t underprice or overprice your products.",
-    },
-    {
-      question: "Does Pricer work for all types of products?",
-      answer:
-        "Yes! Pricer can analyze and recommend pricing for a wide range of products, from electronics and fashion to SaaS services and digital goods.",
-    },
-    {
-      question: "How does Pricer determine the best price for my product?",
-      answer:
-        "Pricer uses advanced machine learning algorithms that consider factors such as market demand, competitor pricing, historical sales data, and customer behavior to generate pricing recommendations.",
-    },
-    {
-      question: "Can I integrate Pricer with my e-commerce platform?",
-      answer:
-        "Yes! Pricer supports integration with popular e-commerce platforms and APIs, making it easy to automate pricing updates and implement recommendations.",
-    },
-    {
-      question: "How often does Pricer update pricing recommendations?",
-      answer:
-        "The frequency of updates depends on the market dynamics and your business preferences. You can configure Pricer to provide daily, weekly, or real-time pricing suggestions.",
-    },
-    {
-      question: "Is Pricer suitable for small businesses and startups?",
-      answer:
-        "Absolutely! Pricer is designed to help businesses of all sizes, especially startups looking to establish competitive and profitable pricing strategies.",
-    },
-    {
-      question: "What makes Pricer different from other pricing tools?",
-      answer:
-        "Unlike standard pricing tools, Pricer leverages AI to analyze competitor pricing, market trends, and demand elasticity, offering strategic insights rather than just static price suggestions.",
-    },
-  ];
+  const [openIndex, setOpenIndex] = useState(null);
   return (
-    <div className="max-w-[1200px] mx-auto py-24 ">
-      <div className="flex flex-col gap-16 mx-10">
-        <div className="flex justify-center flex-col items-center w-[60%] max-md:w-[100%] mx-auto gap-4 max-lg:w-[80%] max-xl:w-[60%]">
-          <h1 className="text-5xl max-md:text-3xl max-sm:text-2xl max-lg:text-3xl max-xl:text-4xl">Frequently Asked Questions</h1>
-          <p className="text-center max-md:text-sm max-sm:text-xs max-lg:text-base max-xl:text-lg">
-            Get clear, data-driven answers to your pricing questions. Explore
-            our FAQ section for insights on optimizing your product pricing and
-            maximizing revenue.
+    <div className="max-w-4xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col gap-14 mx-auto">
+        <div className="flex flex-col items-center w-full gap-4">
+          <h1 className="text-5xl sm:text-4xl font-extrabold text-gray-900 mb-2 text-center">Frequently Asked Questions</h1>
+          <p className="text-center text-lg text-gray-500 max-w-2xl">
+            Find answers to common questions about Skill Gap Analyzer, our features, and how to get the most out of your upskilling journey.
           </p>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
           {faq_questions.map((faq, index) => (
-            <details
+            <div
               key={index}
-              className="bg-blue-200 max-md:text-sm max-sm:text-xs text-blue-800 transition-all duration-1000 translate hover:bg-blue-300 p-4 flex flex-col gap-4 rounded-lg cursor-pointer"
+              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.08 + 0.1}s` }}
             >
-              <summary className="text-2xl max-md:text-sm max-sm:text-xs max-lg:text-base max-xl:text-lg">{faq.question}</summary>
-              <p className="mx-6 max-md:text-sm max-sm:text-xs max-lg:text-sm max-xl:text-base">{faq.answer}</p>
-            </details>
+              <button
+                className="w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none"
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                aria-expanded={openIndex === index}
+              >
+                <span className="text-xl font-semibold text-gray-800 dark:text-gray-100">{faq.question}</span>
+                {openIndex === index ? (
+                  <MinusIcon className="h-6 w-6 text-blue-600" />
+                ) : (
+                  <PlusIcon className="h-6 w-6 text-blue-600" />
+                )}
+              </button>
+              <div
+                className={`px-6 pb-5 text-gray-600 dark:text-gray-300 text-base transition-all duration-300 ${openIndex === index ? 'block' : 'hidden'}`}
+              >
+                {faq.answer}
+              </div>
+            </div>
           ))}
         </div>
       </div>
+      <style>{`
+        .animate-fade-in-up {
+          opacity: 0;
+          transform: translateY(30px);
+          animation: fadeInUpFAQ 0.6s forwards;
+        }
+        @keyframes fadeInUpFAQ {
+          to {
+            opacity: 1;
+            transform: none;
+          }
+        }
+      `}</style>
     </div>
   );
 };
