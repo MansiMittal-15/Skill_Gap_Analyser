@@ -107,7 +107,7 @@ const Signup = () => {
                 onChange={handleInputChange}
               />
               <span
-                className="absolute right-3 top-11 -translate-y-1/2 cursor-pointer"
+                className="absolute right-3 top-14 -translate-y-1/2 cursor-pointer"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (

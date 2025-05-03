@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const BuyCredits = () => {
+    const navigate = useNavigate();
     const [credits, setCredits] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -62,7 +64,17 @@ const BuyCredits = () => {
         <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md mx-auto">
                 <div className="bg-white shadow rounded-lg p-6">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Buy Credits</h2>
+                    <div className="flex items-center mb-6">
+                        <button
+                            onClick={() => navigate(-1)}
+                            className="mr-4 p-2 rounded-full hover:bg-gray-100"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                        </button>
+                        <h2 className="text-2xl font-bold text-gray-900">Buy Credits</h2>
+                    </div>
 
                     <div className="mb-4 p-3 bg-blue-50 rounded-md">
                         <p className="text-sm text-blue-700">Your current credit balance: <span className="font-bold">{credits}</span></p>
@@ -78,10 +90,10 @@ const BuyCredits = () => {
                                 onChange={handlePurchaseAmountChange}
                                 className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                             >
-                                <option value="100">100 Credits ($9.99)</option>
-                                <option value="250">250 Credits ($19.99)</option>
-                                <option value="500">500 Credits ($34.99)</option>
-                                <option value="1000">1000 Credits ($59.99)</option>
+                                <option value="100">100 Credits ($0.99)</option>
+                                <option value="250">250 Credits ($1.49)</option>
+                                <option value="500">500 Credits ($2.49)</option>
+                                <option value="1000">1000 Credits ($5.99)</option>
                             </select>
                         </div>
 

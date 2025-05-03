@@ -59,7 +59,7 @@ const Header = () => {
   return (
     <>
       {/* <div className="text-xl text-white bg-slate-950 py-5 px-5 sticky top-0 z-20"> */}
-      <div className="text-xl text-black bg-white py-5 px-5 sticky top-0 z-20 border-b-2">
+      <div className="text-xl text-black bg-white py-5 px-5 sticky top-0 z-50 border-b-2">
         <div className="max-w-7xl mx-auto flex justify-between ">
           <div className="flex items-center gap-16 max-lg:gap-6 ">
             <div className="flex items-center gap-4">

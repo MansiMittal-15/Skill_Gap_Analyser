@@ -44,10 +44,10 @@ const SkillGapAnalysis = () => {
     useEffect(() => {
         let cost = 5; // Base cost for analysis
         
-        if (analysisTypes.missingSkills) cost += 10;
-        if (analysisTypes.courses) cost += 15;
-        if (analysisTypes.certifications) cost += 20;
-        if (analysisTypes.resources) cost += 10;
+        if (analysisTypes.missingSkills) cost += 9;
+        if (analysisTypes.courses) cost += 9;
+        if (analysisTypes.certifications) cost += 15;
+        if (analysisTypes.resources) cost += 15;
         
         setCreditCost(cost);
     }, [analysisTypes]);
