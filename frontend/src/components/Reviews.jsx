@@ -105,7 +105,7 @@ const Reviews = () => {
                                     {review.review}
                                 </p>
 
-                                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                                <div className="absolute bottom-[2px] left-1 w-[98%] h-[5px] rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                             </div>
                         </motion.div>
                     ))}

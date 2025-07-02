@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FaRobot, FaUpload, FaBrain, FaLightbulb, FaCertificate, FaChartLine, FaUserGraduate, FaFilePdf, FaDownload, FaStar } from 'react-icons/fa';
 import { generateAnalysisPDF } from '../utils/pdfGenerator';
 import Header from './Header';
+import Footer from './Footer';
 
 const SkillGapAnalysis = () => {
     const [resume, setResume] = useState(null);
@@ -550,6 +551,7 @@ const SkillGapAnalysis = () => {
                 animation-delay: 4s;
             }
         `}</style>
+        <Footer />
         </>
     );
 };

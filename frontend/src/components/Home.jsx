@@ -18,7 +18,7 @@ const Home = () => {
       <LandingPageContent />
       <Reviews />
       <FAQs />
-      <Plans />
+      {/* <Plans /> */}
       <Footer />
     </div>
     </>

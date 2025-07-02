@@ -12,10 +12,10 @@ import pdfParse from 'pdf-parse/lib/pdf-parse.js';
 import { getCourseRecommendations } from './services/geminiService.js';
 import { calculateAnalysisCost } from './services/creditService.js';
 
-// Load environment variables
+
 dotenv.config();
 
-// Debug logging for environment variables
+
 console.log('Environment variables loaded:');
 console.log('GEMINI_API_KEY:', process.env.GEMINI_API_KEY ? 'Present' : 'Missing');
 console.log('PORT:', process.env.PORT || '8001 (default)');
@@ -24,7 +24,7 @@ const app = express();
 const port = process.env.PORT || 8001;
 const ML_SERVICE_URL = 'http://localhost:5001';
 
-// Middleware for debugging API requests
+
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
   console.log('Request body:', req.body);
@@ -32,20 +32,20 @@ app.use((req, res, next) => {
   next();
 });
 
-// Middleware
+
 app.use(cors({
-  origin: 'http://localhost:5173', // Frontend origin
+  origin: 'http://localhost:5173', 
   credentials: true
 }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Multer setup
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-// Check ML service availability
+
 async function checkMLService() {
     try {
         await axios.get(`${ML_SERVICE_URL}/`);
@@ -56,25 +56,22 @@ async function checkMLService() {
     }
 }
 
-// Upload route
+
 app.post('/upload', upload.single('resume'), async (req, res) => {
     try {
-        // Debug log: log received file and form data
+        
         console.log('Received file:', req.file);
         console.log('Received form data:', req.body);
         if (!req.file) {
             return res.status(400).json({ error: 'No file uploaded' });
         }
 
-        // Get target role and userId from request body
         const targetRole = req.body.targetRole || 'Full Stack Developer';
-        const userId = req.body.userId; // Optional: User ID for authenticated users
+        const userId = req.body.userId; 
         const analysisType = req.body.analysisType || ['missingSkills', 'courses', 'certifications', 'resources'];
 
-        // Calculate the credit cost for this analysis
         const creditCost = calculateAnalysisCost(analysisType);
 
-        // Check if ML service is available
         const isMLServiceAvailable = await checkMLService();
         if (!isMLServiceAvailable) {
             return res.status(503).json({ 
@@ -104,21 +101,19 @@ app.post('/upload', upload.single('resume'), async (req, res) => {
 
         try {
             console.log('Sending request to ML service...');
+            console.log(resumeText) ;
             const response = await axios.post(`${ML_SERVICE_URL}/analyze`, { 
                 resumeText: resumeText,
                 targetRole: targetRole,
                 userId: userId,
                 analysisType: analysisType
             });
-            // Debug log: log ML service response
             console.log('ML service response:', response.data);
-            // Get AI-powered course recommendations
             const recommendations = await getCourseRecommendations(
                 response.data.missingSkills,
                 targetRole
             );
 
-            // Combine ML analysis with AI recommendations
             const result = {
                 ...response.data,
                 recommendations: recommendations,
@@ -143,11 +138,9 @@ app.post('/upload', upload.single('resume'), async (req, res) => {
     }
 });
 
-// Existing routes
 app.use('/api/v1/user', userRoute);
 app.use('/api/v1/credits', creditRoutes);
 
-// Start server
 app.listen(port, () => { 
     connectDB();
     console.log(`Server running on http://localhost:${port}`);

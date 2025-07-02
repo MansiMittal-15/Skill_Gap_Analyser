@@ -50,7 +50,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="flex gap-6 flex-wrap justify-center"
         >
-          <Link to="/analyse-form">
+          <Link to="/analyse">
             <button className="group relative px-8 py-3 text-lg rounded-full font-semibold bg-gradient-to-r from-blue-700 to-purple-600 text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(88,126,255,0.5)] focus:outline-none focus:ring-2 focus:ring-blue-400">
               <span className="relative z-10 flex items-center gap-2">
                 Get Started

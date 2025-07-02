@@ -1,73 +1,94 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaCheck, FaCrown, FaRocket, FaStar } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 
 const plans = [
     {
-        name: "Basic",
+        name: "Free Plan",
         icon: <FaStar className="text-yellow-400 text-3xl" />,
-        price: "₹499",
-        credits: 50,
+        price: "$0.00",
+        credits: 30,
         features: [
-            "50 AI Analysis Credits",
-            "Basic Skill Gap Report",
-            "Email Support",
-            "7-day History Access",
+            "30 AI Analysis Credits",
+            "Report Download Option",
+        ],
+        popular: false,
+        gradient: "from-blue-400 to-blue-600"
+    },
+    {
+        name: "Small Top-Up",
+        icon: <FaStar className="text-yellow-400 text-3xl" />,
+        price: "$0.49",
+        credits: 30,
+        features: [
+            "30 AI Analysis Credits",
+            "Report Download Option",
             "Standard Response Time"
         ],
         popular: false,
         gradient: "from-blue-400 to-blue-600"
     },
     {
-        name: "Professional",
+        name: "Medium Top-Up",
         icon: <FaCrown className="text-yellow-400 text-3xl" />,
-        price: "₹999",
-        credits: 120,
+        price: "$1.69",
+        credits: 100,
         features: [
-            "120 AI Analysis Credits",
-            "Detailed Skill Gap Report",
-            "Priority Email Support",
-            "30-day History Access",
+            "100 AI Analysis Credits",
+            "Report Download Option",
+            "Email Support",
             "Faster Response Time",
-            "Custom Learning Paths",
-            "Industry Benchmarking"
         ],
         popular: true,
         gradient: "from-purple-400 to-purple-600"
     },
     {
-        name: "Enterprise",
+        name: "Large Top-Up",
         icon: <FaRocket className="text-yellow-400 text-3xl" />,
-        price: "₹2499",
-        credits: 350,
+        price: "$3.99",
+        credits: 250,
         features: [
-            "350 AI Analysis Credits",
-            "Advanced Skill Gap Report",
-            "24/7 Priority Support",
-            "90-day History Access",
+            "250 AI Analysis Credits",
+            "Report Download Option",
+            "Priority Email Support",
             "Instant Response Time",
             "Custom Learning Paths",
-            "Industry Benchmarking",
-            "Team Analytics Dashboard",
-            "API Access"
         ],
         popular: false,
         gradient: "from-teal-400 to-teal-600"
-    }
+    },
+    {
+        name: "Monthly Plan",
+        icon: <FaCrown className="text-yellow-400 text-3xl" />,
+        price: "$9.99",
+        credits: 1000,
+        features: [
+            "1000 AI Analysis Credits",
+            "Report Download Option",
+            "Priority Email Support",
+            "Instant Response Time",
+            "Custom Learning Paths",
+            "Valid for a Month",
+        ],
+        popular: true,
+        gradient: "from-teal-400 to-teal-600"
+    },
 ];
 
 const Plans = () => {
+    const navigate = useNavigate();
     return (
         <>
-       
+        <Header />
         <div className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
             </div>
-
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -96,7 +117,7 @@ const Plans = () => {
                             viewport={{ once: true }}
                             className="relative group"
                         >
-                            <div className={`h-full bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/10 hover:border-blue-400/50 transition-all duration-300 transform hover:-translate-y-2 ${plan.popular ? 'ring-2 ring-blue-400' : ''}`}>
+                            <div className={`h-full bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/10 hover:border-blue-400 transition-all duration-300 transform hover:-translate-y-2 ${plan.popular ? 'ring-2 ring-blue-400' : ''}`}>
                                 {plan.popular && (
                                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                                         <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-1 rounded-full text-sm font-medium">
@@ -110,7 +131,7 @@ const Plans = () => {
                                         <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
                                         <div className="flex items-baseline">
                                             <span className="text-4xl font-extrabold text-white">{plan.price}</span>
-                                            <span className="text-gray-400 ml-2">/month</span>
+                                            {/* <span className="text-gray-400 ml-2">/month</span> */}
                                         </div>
                                     </div>
                                     {plan.icon}
@@ -125,12 +146,18 @@ const Plans = () => {
                                     ))}
                                 </div>
 
-                                <Link 
-                                    to="/credits"
+                                <button 
+                                    onClick={()=>{
+                                        if(plan.name === 'Free Plan') {
+                                            navigate('/analyse')
+                                        } else {
+                                            navigate('/credits')
+                                        }
+                                    }}
                                     className={`w-full inline-flex justify-center items-center px-6 py-3 rounded-lg text-white font-semibold transition-all duration-300 bg-gradient-to-r ${plan.gradient} hover:opacity-90 transform hover:scale-105`}
                                 >
                                     Get Started
-                                </Link>
+                                </button>
                             </div>
                         </motion.div>
                     ))}
@@ -170,6 +197,7 @@ const Plans = () => {
                 }
             `}</style>
         </div>
+        <Footer />
         </> 
     );
 };
