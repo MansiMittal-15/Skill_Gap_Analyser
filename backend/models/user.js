@@ -18,6 +18,11 @@ const userSchema = mongoose.Schema({
         type: String, 
         required: true,
     },
+    credits: {
+        type: Number,
+        default: 500, // Give users 500 credits by default
+        required: true,
+    },
     reviews: [ {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Reviews', 
