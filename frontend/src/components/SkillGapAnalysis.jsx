@@ -203,7 +203,7 @@ const SkillGapAnalysis = () => {
                         <form onSubmit={handleSubmit} className="space-y-8">
                             {/* Resume Upload */}
                             <div className="bg-white/5 p-6 rounded-xl border-2 border-dashed border-white/20 transition-all hover:border-blue-400/50">
-                                <label className="block text-lg font-medium text-white mb-4 flex items-center justify-center">
+                                <label className="text-lg font-medium text-white mb-4 flex items-center justify-center">
                                     <FaUpload className="mr-2 text-blue-400" />
                                     Upload Your Resume
                                 </label>
@@ -235,7 +235,7 @@ const SkillGapAnalysis = () => {
 
                             {/* Target Role Input */}
                             <div>
-                                <label className="block text-lg font-medium text-white mb-2 flex items-center">
+                                <label className="text-lg font-medium text-white mb-2 flex items-center">
                                     <FaUserGraduate className="mr-2 text-blue-400" />
                                     Target Role
                                 </label>
@@ -255,7 +255,7 @@ const SkillGapAnalysis = () => {
 
                             {/* Analysis Type Selection */}
                             <div className="bg-white/5 p-6 rounded-xl border border-white/10">
-                                <label className="block text-lg font-medium text-white mb-4 flex items-center">
+                                <label className="text-lg font-medium text-white mb-4 flex items-center">
                                     <FaLightbulb className="mr-2 text-blue-400" />
                                     Analysis Options
                                 </label>
